@@ -1,0 +1,14 @@
+////////////////////////////////////////////////////////////////////////////////
+// Name:  Jaime Sanchez
+// Email: jaime.sanechez@tufts.edu
+// File: LeftPanel.java
+// Description: *****
+////////////////////////////////////////////////////////////////////////////////
+import java.awt.*;
+import javax.swing.*;
+
+public class LeftPanel extends JPanel {
+  public LeftPanel(Model m) {
+    setBackground(Color.GRAY);
+  }
+}

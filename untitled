@@ -1,0 +1,29 @@
+////////////////////////////////////////////////////////////////////////////////
+// Name:  Jaime Sanchez
+// Email: jaime.sanechez@tufts.edu
+// File: Boat.java
+// Description:  Extends the Ship class.
+////////////////////////////////////////////////////////////////////////////////
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.util.*;
+import java.lang.String.*;
+
+public final class Boat extends Ship {
+
+	Boat (){ 			// constructor without specified position. 
+		initBoat();
+		position  = new Rectangle (46*shipID, 100, 30, 40); // "random" position
+	}
+	Boat (Rectangle pos){ // consttructor with position .
+		initBoat();
+		position = pos; 
+	}
+	//initial default values for a Boat
+	private void initBoat(){
+	color = Color.BLUE;
+	shipType = Types.Ship.BOAT;
+	}
+
+}

@@ -1,0 +1,21 @@
+To add a ship:
+
+1 click a button on the rightpanel.
+	this button pops up a addpanel inside that rightpanel
+		the user chooses different parameters and adds a ship to the map
+	the addpanel closes. 
+
+	addButton.
+
+	Need to modify: 
+		RightPanel -> to add the addship button and the addpanel.
+			Create addSHip Button.  DONE 
+				* Listener to add show addShipPanel DONE 
+			Create AddShipPanel DONE 
+				AddSHIP button with listener.  DONE
+				PARAMETERS
+					position. 
+					ship type. 
+					speed. 
+			
+
