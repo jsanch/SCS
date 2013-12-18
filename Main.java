@@ -14,28 +14,12 @@ public class Main {
   }
   public Main() {
   /* MODEL */
-    // Map ( Holds Application Data )
-    Model map = new Model();
-
+    Model map = new Model(); //holds app data
   /* VIEW */
-    View view = new View(map);
+    View view = new View(map); //holds the GUI. 
   /* CONTROLLER */
-    Controller controller = new Controller(map,view);
-
+    Controller controller = new Controller(map,view); //Listener
 
   }
 }
 
-// The Controller manipulates the MODEL(map). 
-// The MODEL (map) updates the view. 
-  // The View must be redrawn after every manipulation to it. 
-
-// view -> model
-
-// controller -> model.
-
-// view redraws from model.
-
-// contoller changes model.
-
-// loop.

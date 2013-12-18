@@ -41,12 +41,14 @@ public class AddShipPanel extends JPanel {
 
  	public AddShipPanel(Model m){
     map = m; 
-    setLayout(new GridLayout(4,3,0,0));
-    // setBackground(Color.GRAY);
+    setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+    setBackground(Color.MAGENTA);
 
  	/*ADD SHIP PARAMETERS */ 
 		/* POSITION */ 
     JPanel positionPanel = new JPanel();
+    positionPanel.setLayout(new BoxLayout(positionPanel,BoxLayout.Y_AXIS));
+    positionPanel.setBackground(Color.MAGENTA);
  		//creating position widgets. 
     positionLabel = new JLabel ("Position:");
  		xLabel  = new JLabel("x:");
@@ -55,7 +57,6 @@ public class AddShipPanel extends JPanel {
 		yPosition = new JSlider(JSlider.HORIZONTAL,0,yMaxSize,1);
 		xPositionDisplay = new JLabel("000"); 
 		yPositionDisplay = new JLabel("000"); 
-		
 		// addiing position widgets. 
     positionPanel.add(positionLabel);
 		positionPanel.add(xLabel);
@@ -69,6 +70,8 @@ public class AddShipPanel extends JPanel {
     /* Type */ 
     // type panel
     JPanel typePanel = new JPanel(); 
+    typePanel.setBackground(Color.MAGENTA);
+    typePanel.setLayout(new BoxLayout(typePanel,BoxLayout.Y_AXIS));
     // type widgets. 
     shipTypeLabel = new JLabel ("Ship Type:");
     rbBoat = new JRadioButton ("Boat");
@@ -91,6 +94,8 @@ public class AddShipPanel extends JPanel {
     /* Direction */ 
     //direction panel 
     JPanel directionPanel = new JPanel();
+    directionPanel.setBackground(Color.MAGENTA);
+    directionPanel.setLayout(new BoxLayout(directionPanel,BoxLayout.Y_AXIS));
     //direction widgets
     directionLabel = new JLabel ("direction:");
     rbNorth  = new JRadioButton ("North"); 
@@ -111,9 +116,12 @@ public class AddShipPanel extends JPanel {
     directionPanel.add(rbWest);
     add(directionPanel);
  	/* ADD SHIP BUTTON */ 
+   JPanel addPanel = new JPanel();
+   addPanel.setLayout(new BoxLayout(addPanel,BoxLayout.Y_AXIS));
+   addPanel.setBackground(Color.MAGENTA);
  		addShipButton = new JButton("Add");
- 		add(addShipButton); 
-
+ 		addPanel.add(addShipButton); 
+    add(addPanel);
 
  	}
   public Types.Direction get_selectedDirection(){

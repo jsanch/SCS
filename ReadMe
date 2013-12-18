@@ -1,0 +1,15 @@
+ReadMe. 
+
+Interactive Controls:
+1) Add Ship. This Button  is located to the right and it opens up a panel to the right that lets you add a ship with different parameters: position, ship type, and direction. To use this, simply press the "Add Ship" , selecy and x and a y position, select the desired ship type and the desired direction and then press the "add button". The panel dissapears after a ship is added. The position sliders are updated to show the canvas size available.  
+2) Animation. The animation panel is enabled/disabled with the "Show/Hide Animation Panel button" to the right of the window.When enabled, a red panel shows up. In this panel you can choose to start the animation of the application. The animation consists of moving each ship in their specific direction. You can shoose a speed. Press "start" and "stop" accordingly to start or stop the animation. 
+3) Show/Select Ships. This interactive control lets you control over the visibility of the ships. You may choose to display them all, or display specififc combinations of ships. This control affects a whole categories of ships. 
+4) Toogle Background. This control lets you change from green to white and vicesversa. Simply select the desired color and the background will change immidiately. 
+5) Show/Hide Gridlines. This lets you hide and show the grids in the map. Simply select/deselect the checkbox, and the map will reflect the changes immeadiately. 
+
+Animation: 
+The animation uses the timer object. ut updates the ship's position every tick. A start and a stop button are implemeted to start and stop the timer. 
+
+
+At least one interactive conrol affects a whole or a cetegory of ships. 
+one interactive control adds a new ship. 

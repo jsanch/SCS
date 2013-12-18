@@ -16,6 +16,7 @@ public class Canvas extends JComponent {
   public Canvas(Model m){
     map = m;
     setBorder (new LineBorder(Color.CYAN, 2));
+    setPreferredSize(new Dimension(500,700));
   }
 
   public void paintComponent (Graphics g) { //is this called when

@@ -16,33 +16,32 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
 import javax.swing.border.*;
+import javax.swing.Timer;
+
 
 
 public class Controller implements  ChangeListener, ActionListener, ItemListener {
   // key elements of the Controller:
   private Model map; // the map is where data is stored. 
   private View view;  //the view is where all the widgters and panels are.
+  private Timer timer;
   
   public Controller (Model m, View v) {
     map = m; 
     view = v; 
+    timer = new Timer(100,this);
     add_BackgroundActionListener(this); //Background Listener.
     add_GridLineListener(this);         //GridLines Listener. 
-    add_showAddShipPanelButtonListener(this); //show/hide addship button listener. 
-    add_addShipListener(this); //the add ship listener. 
-    add_PositionSlidersListener(this);
-    add_ShipViewsListener(this);
-    add_AnimationPanelActionListeners(this);
-    // testing();
-  
+    add_ShipViewsListener(this); // show/hide ships
+    add_addShipListeners(this,this); //add ship
+    add_AnimationPanelListeners(this,this); //add animation.   
   }
 
   //listens for all actions.
   @Override
   public void actionPerformed(ActionEvent e) {
     Object src = e.getSource(); //get the source of the object. 
-
-    /* TOGGLE BACKGROUND */ 
+/* TOGGLE BACKGROUND */ 
     // green radio button 
     if (src == view.get_bottomPanel().get_bgPanel().get_rbGreen() ){
       map.changeBackgroundColor(Types.BackgroundColor.GREEN);
@@ -53,24 +52,14 @@ public class Controller implements  ChangeListener, ActionListener, ItemListener
       map.changeBackgroundColor(Types.BackgroundColor.WHITE);
       System.out.println("Change background to white");
     }
-    /* SHOW / HIDE  GRID LINES */ 
+/* SHOW / HIDE  GRID LINES */ 
     // show/hide grid lines checkbox
     if (src == view.get_bottomPanel().get_glPanel().get_gridCB() ){
       boolean b = view.get_bottomPanel().get_glPanel().get_gridCB().isSelected();
         map.set_gridLines(b);
     }
-    /*ANIMATION*/
-    //show/hide the Animation Panel
-    if (src == view.get_rightPanel().get_showAnimationPanelButton()){
-      // set the visibility of the Animataion JPanel
-      if ( view.get_rightPanel().get_animationPanel().isVisible() == true) 
-        view.get_rightPanel().get_animationPanel().setVisible(false);
-      else 
-        view.get_rightPanel().get_animationPanel().setVisible(true);
-    }
     
-
-    /* ADD SHIP */
+/* ADD SHIP */
     //Show the addShipPanel. 
     if (src == view.get_rightPanel().get_showAddShipPanelButton() ){
       //set  the  visibility of the JPanel
@@ -120,13 +109,34 @@ public class Controller implements  ChangeListener, ActionListener, ItemListener
       view.get_rightPanel().get_showAddShipPanelButton().setEnabled(true);
     }
 
+/*ANIMATION*/
+    //show/hide the Animation Panel
+    if (src == view.get_rightPanel().get_showAnimationPanelButton()){
+      // set the visibility of the Animataion JPanel
+      if ( view.get_rightPanel().get_animationPanel().isVisible() == true) 
+        view.get_rightPanel().get_animationPanel().setVisible(false);
+      else 
+        view.get_rightPanel().get_animationPanel().setVisible(true);
+    }
+    if (src == view.get_rightPanel().get_animationPanel().get_startButton()){
+      timer.start();
+    }
+    if (src == view.get_rightPanel().get_animationPanel().get_stopButton()){
+      timer.stop();
+    }
+    if (src == timer){
+      map.moveAllShips(view.get_rightPanel().get_animationPanel().get_speed());
+    }
+
     //after any/every,  REFRESH the VIEW
     view.refresh(); //repaints canvas, revalidates window
   }
+
+  // listens for change events
   @Override
   public void stateChanged(ChangeEvent e){
     Object src = e.getSource();
-    int xpos,ypos;
+    int xpos,ypos,speed;
     /* Add Ship Position Parameters */ 
     if ( src == view.get_rightPanel().get_addShipPanel().get_xPosition()){
       JSlider slider = (JSlider) src; // tranforming objrct to get its 
@@ -140,9 +150,15 @@ public class Controller implements  ChangeListener, ActionListener, ItemListener
       //display the position in the view. 
       view.get_rightPanel().get_addShipPanel().set_yPositionDisplay(ypos);
     } 
+    if (src == view.get_rightPanel().get_animationPanel().get_speedSlider()){
+      JSlider slider = (JSlider) src; 
+      speed  = slider.getValue(); 
+      view.get_rightPanel().get_animationPanel().set_speedDisplay(speed);
+
+    }
     view.refresh(); 
   }
-
+  //listens for changed items. 
   @Override
   public void itemStateChanged(ItemEvent e){
   /* SHIP VIEWS PANEL - 'select which ships to display' */ 
@@ -171,30 +187,27 @@ public class Controller implements  ChangeListener, ActionListener, ItemListener
   public void add_GridLineListener(ActionListener ae){
     view.get_bottomPanel().get_glPanel().get_gridCB().addActionListener(ae);
   }
-
-  // listener for  show add ship panel button. 
-  public void add_showAddShipPanelButtonListener(ActionListener ae){
+  public void add_addShipListeners(ActionListener ae, ChangeListener ce){
     view.get_rightPanel().get_showAddShipPanelButton().addActionListener(ae);
-  }
-
-  //listener for the add ship button. 
-  public void add_addShipListener(ActionListener ae){
     view.get_rightPanel().get_addShipPanel().get_addShipButton().addActionListener(ae);
-
-  }
-  //listener for the position sliders
-  public void add_PositionSlidersListener(ChangeListener ce){
     view.get_rightPanel().get_addShipPanel().get_xPosition().addChangeListener(ce);
     view.get_rightPanel().get_addShipPanel().get_yPosition().addChangeListener(ce);
   }
+
   // listenr for the ShipViewsPanel  checkboxes
   public void add_ShipViewsListener(ItemListener i){
     view.get_topPanel().get_viewsPanel().get_subCB().addItemListener(i);
     view.get_topPanel().get_viewsPanel().get_yatchCB().addItemListener(i);
     view.get_topPanel().get_viewsPanel().get_boatCB().addItemListener(i);
   }
-  public void add_AnimationPanelActionListeners(ActionListener ae){
+
+  public void add_AnimationPanelListeners(ActionListener ae , ChangeListener ce){
     view.get_rightPanel().get_showAnimationPanelButton().addActionListener(ae);
+    view.get_rightPanel().get_animationPanel().get_startButton().addActionListener(ae);
+    view.get_rightPanel().get_animationPanel().get_stopButton().addActionListener(ae);
+    view.get_rightPanel().get_animationPanel().get_speedSlider().addChangeListener(ce);
   }
+
+
 
 }

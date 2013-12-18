@@ -33,12 +33,17 @@ public class View {
     // Window (JFrame)
     window = new JFrame();
     window.setTitle ("Ship Control System");
-    window.setSize(1500,1000);
+    window.setLocation (1000, 50);
+    window.setSize(800,900);
     window.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 
     // Window's Container (Container)
     windowContentPane = window.getContentPane();
     windowContentPane.setLayout (new BorderLayout());
+
+      // Putting the Menu Bar
+    LeMenuBar leBar = new LeMenuBar();
+    window.setJMenuBar (leBar.getmenuBar());
 
 
     // Canvas (JComponent). Draws the map.

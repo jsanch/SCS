@@ -53,19 +53,13 @@ public class Model {
     newShip.set_direction(direction);
     ships.add(newShip);
     return true;
-
-
-
-  // if (type == Types.Ship.BOAT) {
-  //     ships.add(new Boat(position));
-  //   } else if (type == Types.Ship.YATCH) {
-  //     ships.add(new Yatch(position));
-  //   } else if (type == Types.Ship.SUB){
-  //     ships.add(new Sub(position));
-  //   } else {
-  //       System.out.println ( " Must specify ShipType");
-  //   }
 	}
+
+  public boolean moveAllShips(int speed){
+    for (int i=0; i<ships.size(); i++)
+      ships.get(i).move(speed);
+    return true;
+  }
 
   /* Setter Methods */ 
   public void set_canvasSize(Dimension d){

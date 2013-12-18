@@ -20,6 +20,16 @@ public abstract class Ship {
   
 
 /* General Ship Methods */ 
+  public void move(int speed){
+    if (this.parameters.get_direction() == Types.Direction.NORTH)
+      parameters.get_position().translate(0,speed);
+    if (this.parameters.get_direction() == Types.Direction.SOUTH)
+      parameters.get_position().translate(0,-speed);
+    if (this.parameters.get_direction() == Types.Direction.EAST)
+      parameters.get_position().translate(speed,0);
+    if (this.parameters.get_direction() == Types.Direction.WEST)
+      parameters.get_position().translate(-speed,0); 
+  }
 
   //draws a rectangular area around the ship. 
   public  void drawShipArea(Graphics2D g){
