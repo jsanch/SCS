@@ -19,7 +19,7 @@ public class Main {
     View view = new View(map); //holds the GUI. 
   /* CONTROLLER */
     Controller controller = new Controller(map,view); //Listener
-
   }
 }
+
 

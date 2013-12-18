@@ -1,15 +1,88 @@
 ReadMe. 
 
+The Design:
+I Felt that my previous design was very flawed (it was a huge mess) and even i got lost in the code while trying to figure out where to add listeners and other critical events. This is why this version is completely revamped and it's based on the MVC technique. My program has a model, a view and a controller. 
+
+Collaboration relationships:
+
+The MODEL (aka map) includes the application data. It gets altered by th by the controller and it feeds the view. 
+
+The VIEW is where all the GUI elements are. it includes the JFrames, JComponents and the JPanels.  It makes use of certain booleans and conditions from the Model which are typically changed by the Controller. 
+
+The CONTROLLER is the brain of the Application. It is an ActionListener, ChangeListener and ItemListener. It controls both the view and the model. 
+
+
 Interactive Controls:
 1) Add Ship. This Button  is located to the right and it opens up a panel to the right that lets you add a ship with different parameters: position, ship type, and direction. To use this, simply press the "Add Ship" , selecy and x and a y position, select the desired ship type and the desired direction and then press the "add button". The panel dissapears after a ship is added. The position sliders are updated to show the canvas size available.  
 2) Animation. The animation panel is enabled/disabled with the "Show/Hide Animation Panel button" to the right of the window.When enabled, a red panel shows up. In this panel you can choose to start the animation of the application. The animation consists of moving each ship in their specific direction. You can shoose a speed. Press "start" and "stop" accordingly to start or stop the animation. 
-3) Show/Select Ships. This interactive control lets you control over the visibility of the ships. You may choose to display them all, or display specififc combinations of ships. This control affects a whole categories of ships. 
+3) (New feature) Show/Select Ships. This interactive control lets you control over the visibility of the ships. You may choose to display them all, or display specififc combinations of ships. This control affects a whole categories of ships.
 4) Toogle Background. This control lets you change from green to white and vicesversa. Simply select the desired color and the background will change immidiately. 
 5) Show/Hide Gridlines. This lets you hide and show the grids in the map. Simply select/deselect the checkbox, and the map will reflect the changes immeadiately. 
 
 Animation: 
-The animation uses the timer object. ut updates the ship's position every tick. A start and a stop button are implemeted to start and stop the timer. 
+The animation uses the timer object. It updates the ship's position every tick. A start and a stop button are implemeted to start and stop the timer. 
+
+Programming practices: 
+
+Inheritance Hierarchy:
+Main
+Model
+Controller [implements ActionListener,ChangeListener,ItemListener]
+View
+Ship [Absract]
+	Yatch
+	Boat
+	Sub
+(JPanel)
+	TopPanel
+		ShipViewsPanel
+	BottomPanel
+		ToogleBackgroundPanel
+		GridLinesPanel
+	RightPanel
+		AddShipPanel
+		AnimationPanel
+(JComponent)
+	Canvas
+ShipParameters 
+Types
 
 
-At least one interactive conrol affects a whole or a cetegory of ships. 
-one interactive control adds a new ship. 
+Aggregation Hierarchy
+Main
+	Model map
+	  ArrayList<Ship> ships  
+		Types.BackgroundColor bgColor
+	  ShipParameters tempShipParams 
+	View view
+		Model map 
+			*(look at Model map above)
+  	JFrame window
+  	Canvas canvas
+  		Model map
+  	TopPanel topPanel
+  		Model map
+  		ShipViewsPanel viewsPanel
+  			Model map
+  	BottomPanel bottomPanel
+  		ToogleBackgroundPanel bgPanel 
+  			Model map
+  		GridLinesPanel glPanel
+  			Model map
+  	RightPanel rightPanel
+  		AddShipPanel addShipPanel 
+  			Model map
+		  AnimationPanel animationPanel
+		  	Model map
+  Controller controller
+  	Model map
+  		*(look at Model map above)
+  	View view
+  		*(look at View view above)
+  	Timer timer
+
+
+	
+
+
+

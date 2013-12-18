@@ -41,15 +41,9 @@ public class View {
     windowContentPane = window.getContentPane();
     windowContentPane.setLayout (new BorderLayout());
 
-      // Putting the Menu Bar
-    LeMenuBar leBar = new LeMenuBar();
-    window.setJMenuBar (leBar.getmenuBar());
-
-
     // Canvas (JComponent). Draws the map.
     canvas = new Canvas(map);
     windowContentPane.add(canvas, BorderLayout.CENTER);
-
 
     // Control Panels (JPanels). The interact with the model (map).
     topPanel  = new TopPanel(map);
@@ -61,10 +55,8 @@ public class View {
     rightPanel = new RightPanel(map);
     windowContentPane.add(rightPanel, BorderLayout.EAST);
 
-
     //showing the window.
     window.setVisible(true);
-
   }
 
   public void refresh(){
@@ -73,13 +65,13 @@ public class View {
     rightPanel.get_addShipPanel().refresh();
   }
 
-/* setter methods */ 
+  /* setter methods */ 
   public void setModel (Model m){  //the model contains key elements
     map = m;                        // that tell the view what to draw. 
   }
 
 
-/* getter functions */ 
+  /* getter functions */ 
   public JFrame get_window(){
     return window;
   }
@@ -98,6 +90,5 @@ public class View {
   public RightPanel get_rightPanel(){
     return rightPanel;
   }
-
 
 }
