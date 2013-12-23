@@ -30,14 +30,14 @@ public class AddShipPanel extends JPanel {
   private JRadioButton rbSub;
   // Direction
   private JLabel directionLabel; 
-  private  JRadioButton rbNorth ;
-  private  JRadioButton rbSouth;
-  private  JRadioButton  rbEast;
-  private  JRadioButton rbWest;
+  private JRadioButton rbNorth ;
+  private JRadioButton rbSouth;
+  private JRadioButton  rbEast;
+  private JRadioButton rbWest;
 
  	//default canvasmax size 
-	int xMaxSize = 1000; 
-	int yMaxSize = 1000; 
+	private int xMaxSize = 1000; 
+	private int yMaxSize = 1000; 
 
  	public AddShipPanel(Model m){
     map = m; 

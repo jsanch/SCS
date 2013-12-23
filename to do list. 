@@ -13,9 +13,11 @@ To add a ship:
 				* Listener to add show addShipPanel DONE 
 			Create AddShipPanel DONE 
 				AddSHIP button with listener.  DONE
-				PARAMETERS
-					position. 
-					ship type. 
+				PARAMETERS DONE
+					position. DONE
+						add jslider listener DONE
+						jslider outputs to a jbox.   DONE
+					ship type. DONE
 					speed. 
 			
 
